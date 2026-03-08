@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>CP Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'JetBrains Mono', monospace;
+}
+
+body{
+height:100vh;
+color:white;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
+overflow:hidden;
+background:#020617;
+}
+
+/* fondo animado */
+
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background:radial-gradient(circle at 30% 40%,#1e3a8a,transparent),
+radial-gradient(circle at 70% 60%,#0f766e,transparent),
+radial-gradient(circle at 50% 80%,#7c3aed,transparent);
+animation:move 18s infinite alternate;
+z-index:-1;
+}
+
+@keyframes move{
+0%{transform:translate(0,0);}
+100%{transform:translate(-200px,-200px);}
+}
+
+header{
+margin-top:60px;
+text-align:center;
+}
+
+h1{
+font-size:48px;
+letter-spacing:3px;
+margin-bottom:10px;
+}
+
+.subtitle{
+opacity:0.6;
+}
+
+/* buscador */
+
+.search{
+margin-top:35px;
+}
+
+input{
+width:380px;
+padding:14px 20px;
+border-radius:12px;
+border:none;
+outline:none;
+font-size:16px;
+background:rgba(255,255,255,0.1);
+color:white;
+backdrop-filter:blur(10px);
+}
+
+input::placeholder{
+color:#aaa;
+}
+
+/* grid */
+
+.container{
+margin-top:60px;
+width:90%;
+max-width:1200px;
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:28px;
+}
+
+.card{
+padding:35px;
+text-align:center;
+border-radius:16px;
+
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(14px);
+
+text-decoration:none;
+color:white;
+
+transition:0.25s;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 15px 40px rgba(0,0,0,0.6);
+background:rgba(255,255,255,0.14);
+}
+
+.icon{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.name{
+font-size:20px;
+}
+
+.key{
+margin-top:10px;
+opacity:0.4;
+font-size:13px;
+}
+
+/* footer */
+
+footer{
+position:fixed;
+bottom:15px;
+font-size:13px;
+opacity:0.4;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>⚡ CP HUB</h1>
+<div class="subtitle">Competitive Programming Startpage</div>
+</header>
+
+<div class="search">
+<input id="search" placeholder="Buscar en Google..." onkeydown="search(event)">
+</div>
+
+<div class="container">
+
+<a class="card" href="https://projecteuler.net/" target="_blank">
+<div class="icon">🧮</div>
+<div class="name">Project Euler</div>
+<div class="key">atajo: 1</div>
+</a>
+
+<a class="card" href="https://www.codechef.com/dashboard" target="_blank">
+<div class="icon">👨‍💻</div>
+<div class="name">CodeChef</div>
+<div class="key">atajo: 2</div>
+</a>
+
+<a class="card" href="https://cp-algorithms.com/navigation.html" target="_blank">
+<div class="icon">📚</div>
+<div class="name">CP Algorithms</div>
+<div class="key">atajo: 3</div>
+</a>
+
+<a class="card" href="https://jutge.org/" target="_blank">
+<div class="icon">⚙️</div>
+<div class="name">Jutge</div>
+<div class="key">atajo: 4</div>
+</a>
+
+<a class="card" href="https://olimpiada-informatica.org/hist%C3%B3rico" target="_blank">
+<div class="icon">🏆</div>
+<div class="name">Olimpiada Informática</div>
+<div class="key">atajo: 5</div>
+</a>
+
+<a class="card" href="https://aprende.olimpiada-informatica.org/" target="_blank">
+<div class="icon">🎓</div>
+<div class="name">Aprende OI</div>
+<div class="key">atajo: 6</div>
+</a>
+
+</div>
+
+<footer>
+atajos 1-6 para abrir páginas
+</footer>
+
+<script>
+
+/* buscador */
+
+function search(e){
+
+if(e.key==="Enter"){
+
+let q=document.getElementById("search").value
+window.open("https://www.google.com/search?q="+q)
+
+}
+
+}
+
+/* atajos de teclado */
+
+document.addEventListener("keydown",function(e){
+
+const links=[
+"https://projecteuler.net/",
+"https://www.codechef.com/dashboard",
+"https://cp-algorithms.com/navigation.html",
+"https://jutge.org/",
+"https://olimpiada-informatica.org/hist%C3%B3rico",
+"https://aprende.olimpiada-informatica.org/"
+]
+
+let n=parseInt(e.key)
+
+if(n>=1 && n<=links.length){
+window.open(links[n-1])
+}
+
+})
+
+</script>
+
+</body>
+</html>
